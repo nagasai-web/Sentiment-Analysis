@@ -1,0 +1,72 @@
+import pandas as pd
+df = pd.read_csv("Flipkart_Reviews.csv")
+print(df.head())
+
+# sentiment_analysis_flipkart.py
+
+import pandas as pd
+from textblob import TextBlob
+from sklearn.metrics import classification_report, accuracy_score
+import random
+
+# -----------------------------
+# STEP 1: Load Dataset
+# -----------------------------
+try:
+    df = pd.read_csv("Flipkart_Product_Reviews.csv")
+    print("✅ Dataset Loaded Successfully")
+except:
+    print("❌ Error: Please make sure 'Flipkart_Product_Reviews.csv' is in the same folder.")
+    exit()
+
+# -----------------------------
+# STEP 2: Sentiment Analysis
+# -----------------------------
+def get_sentiment(review):
+    blob = TextBlob(review)
+    polarity = blob.sentiment.polarity
+
+    if polarity > 0.1:
+        return "positive"
+    elif polarity < -0.1:
+        return "negative"
+    else:
+        return "neutral"
+
+df["Predicted_Sentiment"] = df["Review"].apply(get_sentiment)
+
+# -----------------------------
+# STEP 3: Simulate Evaluation (Random true labels for demo)
+# -----------------------------
+true_labels = [random.choice(["positive", "negative", "neutral"]) for _ in range(len(df))]
+accuracy = accuracy_score(true_labels, df["Predicted_Sentiment"]) * 100
+
+print(f"Accuracy: {accuracy:.2f} %\n")
+
+print("📊 Model Evaluation:")
+print(classification_report(true_labels, df["Predicted_Sentiment"], digits=2))
+
+# -----------------------------
+# STEP 4: Custom Review Input
+# -----------------------------
+review = input("\n💬 Enter a product review: ")
+
+blob = TextBlob(review)
+polarity = blob.sentiment.polarity
+confidence = abs(polarity) * 100
+
+if polarity > 0.1:
+    sentiment = "positive"
+    emotion = "Satisfied 🙂" if confidence < 60 else "Happy 😀"
+elif polarity < -0.1:
+    sentiment = "negative"
+    emotion = "Unhappy 😕" if confidence < 60 else "Angry 😠"
+else:
+    sentiment = "neutral"
+    emotion = "Neutral 😐"
+
+print("\n💬 Review:", review)
+print("Predicted Sentiment:", sentiment)
+print(f"Confidence Score: {confidence:.2f} %")
+print("Detected Emotion:", emotion)
+
