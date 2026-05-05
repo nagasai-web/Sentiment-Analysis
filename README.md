@@ -53,11 +53,11 @@ KEY HIGHLIGHTS
 
 EXAMPLE TEST CASES
 
-      | Review | Prediction | Emotion |
-      |--------|-----------|--------|
-      | "Amazing product!" | Positive | Happy 😀 |
-      | "Not worth the money" | Negative | Angry 😠 |
-      | "It's okay" | Neutral | Neutral 😐 |
+ | Review | Prediction | Emotion |
+ |--------|-----------|--------|
+ | "Amazing product!" | Positive | Happy 😀 |
+ | "Not worth the money" | Negative | Angry 😠 |
+ | "It's okay" | Neutral | Neutral 😐 |
 
 REQUIREMENTS
 
