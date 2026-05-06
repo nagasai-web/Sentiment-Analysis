@@ -78,4 +78,6 @@ FUTURE SCOPE
     - Improve model accuracy by using advanced techniques like TF-IDF instead of basic CountVectorizer.
     - Develop a simple web interface using Streamlit to make the application user-friendly.
     - Enhance emotion detection using more advanced NLP or deep learning models.
-      
+
+## LIVE DEMO
+https://sentiment-analysis-app22.streamlit.app
